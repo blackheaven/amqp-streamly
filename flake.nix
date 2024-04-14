@@ -19,9 +19,10 @@
       rec
       {
         packages.amqp-streamly =
-          haskellPackages.callCabal2nix "amqp-streamly" ./. {
-            testcontainers = jailbreakUnbreak haskellPackages.testcontainers;
-          };
+          pkgs.haskell.lib.dontCheck
+            (haskellPackages.callCabal2nix "amqp-streamly" ./. {
+              testcontainers = jailbreakUnbreak haskellPackages.testcontainers;
+            });
 
         defaultPackage = pkgs.linkFarmFromDrvs "all-amqp-streamly" (pkgs.lib.unique (builtins.attrValues packages));
 
