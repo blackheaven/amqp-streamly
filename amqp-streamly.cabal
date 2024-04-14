@@ -7,7 +7,7 @@ cabal-version: 1.12
 -- hash: 0e93b864e2ba6a1bd099a1c10b3f25dea8b453a814deb8e26158692a76eca769
 
 name:           amqp-streamly
-version:        0.2.1
+version:        0.3.0
 synopsis:       A simple streamly wrapper for amqp
 description:    A simple streamly wrapper for amqp. Provides two functions `produce` and `consume`.
 category:       streamly, conduit, amqp, rabbitmq
@@ -37,7 +37,8 @@ library
   build-depends:
       amqp >=0.19.1 && <0.23
     , base >=4.7 && <5
-    , streamly >=0.7.2 && <=0.9
+    , streamly-core >=0.2.0 && <0.3
+    , streamly >=0.9 && <0.11
     , text >=1.2.4.0 && <3
   default-language: Haskell2010
 
@@ -57,7 +58,8 @@ test-suite amqp-streamly-test
     , bytestring
     , hspec
     , process
-    , streamly >=0.7.2 && <=0.9
+    , streamly-core >=0.2.0 && <0.3
+    , streamly >=0.9 && <0.11
     , testcontainers
     , text >=1.2.4.0 && <3
   default-language: Haskell2010
