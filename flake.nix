@@ -10,7 +10,7 @@
         (final: prev: {
           # This overlay adds our project to pkgs
           amqp-streamlyProject =
-            final.haskell-nix.project' {
+            final.haskell-nix.cabalProject' {
               src = ./.;
               compiler-nix-name = "ghc964";
               #evalSystem = "x86_64-linux";
