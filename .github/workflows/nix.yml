@@ -1,0 +1,24 @@
+name: nix build
+on:
+  - push
+  - pull_request
+jobs:
+  check-nix:
+    name: Check nix build
+    runs-on: ubuntu-22.04
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v4
+        with:
+          # We need to retrieve full history to determine the correct
+          # `published` and `modified` timestamps
+          fetch-depth: 0
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          extra-conf: system-features = nixos-test benchmark big-parallel kvm
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: Check Nix flake inputs
+        uses: DeterminateSystems/flake-checker-action@v4
+      - name: Build lib
+        run: nix -L build
